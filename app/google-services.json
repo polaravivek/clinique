@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "546616545779",
+    "firebase_url": "https://clinique-dc8de.firebaseio.com",
+    "project_id": "clinique-dc8de",
+    "storage_bucket": "clinique-dc8de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546616545779:android:645d0ff0728352ae924286",
+        "android_client_info": {
+          "package_name": "com.example.clinique"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546616545779-8pr5l7cdmhkpqor2uh9nsbfnuffookqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRIFbCysVJkT9nAZTFnUhgDK7mOBOQQBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546616545779-8pr5l7cdmhkpqor2uh9nsbfnuffookqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
