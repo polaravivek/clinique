@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -13,7 +14,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Geofence extends FragmentActivity implements OnMapReadyCallback {
 
+
     private GoogleMap mMap;
+    private GeofencingClient geofencingClient;
+    private GeofenceHelper geofenceHelper;
+    private String GEOFENCE_ID = "SOME_GEOFENCE_ID";
+
+    private int FINE_LOCATION_ACCESS_REQUEST_CODE = 10001;
+    private int BACKGROUND_LOCATION_ACCESS_REQUEST_CODE = 10002;
+    private float GEOFENCE_RADIUS = 200;
+    private static final String TAG = "MapsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

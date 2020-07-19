@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView simpleText;
 
 
+    public void goToMapActivity(){
+        Intent  intent = new Intent(this,Geofence.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
 
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (user != null) {
 
                         Toast.makeText(MainActivity.this, "Loged in Successful!", Toast.LENGTH_SHORT).show();
+                        goToMapActivity();
                         Log.i("Log in", "Loged in Successful!");
 
                     } else {
@@ -109,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LogoimageView.setOnClickListener(this);
 
         if (ParseUser.getCurrentUser() != null) {
+
+            goToMapActivity();
 
         }
     }

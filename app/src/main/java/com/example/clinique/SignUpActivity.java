@@ -25,7 +25,6 @@ import com.parse.SignUpCallback;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener {
 
     private static final String TAG = "SignUpActivity";
-    Boolean LoginActive = true;
     TextView changeLogInMode;
     Button LogInButton;
     EditText Userpassword;
@@ -137,4 +136,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+
+
 }
