@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mapRelativeLayout"
     >
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -25,13 +26,14 @@
         >
 
         <EditText
-            android:layout_width="260dp"
+            android:id="@+id/radius"
+            android:layout_width="230dp"
             android:layout_height="match_parent"
             android:background="@drawable/editback"
             android:ems="10"
             android:elevation="20dp"
             android:gravity="center"
-            android:hint="Enter Radius"
+            android:hint="Enter Radius(in meter)"
             >
         </EditText>
 
@@ -44,7 +46,7 @@
             android:text="Enter"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="6dp"
             >
         </Button>
 
