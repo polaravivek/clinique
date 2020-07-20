@@ -11,6 +11,7 @@ import android.app.PendingIntent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.input.InputManager;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -161,7 +162,9 @@ public class Geofence extends FragmentActivity implements OnMapReadyCallback,Goo
 
 
     @SuppressLint("MissingPermission")
-    private void addGeofence(LatLng latLng, float radius) {
+    private void addGeofence(LatLng latLng, final float radius) {
+
+        final LatLng latLng1 = latLng;
 
         com.google.android.gms.location.Geofence geofence = geofenceHelper.getGeofence(GEOFENCE_ID, latLng, radius, com.google.android.gms.location.Geofence.GEOFENCE_TRANSITION_ENTER |
                 com.google.android.gms.location.Geofence.GEOFENCE_TRANSITION_DWELL | com.google.android.gms.location.Geofence.GEOFENCE_TRANSITION_EXIT);
@@ -186,8 +189,11 @@ public class Geofence extends FragmentActivity implements OnMapReadyCallback,Goo
 
                                         for(int i = 0; i < stores.size(); i++) {
                                             LatLng storeLocation = new LatLng(stores.get(i).getParseGeoPoint("clinicLoc").getLatitude(), stores.get(i).getParseGeoPoint("clinicLoc").getLongitude());
-                                            mMap.addMarker(new MarkerOptions().position(storeLocation).title(stores.get(i).getString("clinicName")).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                                    }
+                                            int distance = checkDistance(storeLocation,latLng1);
+                                            if( distance <= radius) {
+                                                mMap.addMarker(new MarkerOptions().position(storeLocation).title(stores.get(i).getString("clinicName")).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                                            }
+                                        }
                                 }
                             }
                         });
@@ -247,5 +253,20 @@ public class Geofence extends FragmentActivity implements OnMapReadyCallback,Goo
         }
 
         return false;
+    }
+
+    public void showstore(){
+
+
+    }
+
+    public int checkDistance(LatLng storeLocation,LatLng latLng1){
+
+
+        float results[] = new float[10];
+        Location.distanceBetween(latLng1.latitude,latLng1.longitude,storeLocation.latitude,storeLocation.longitude,results);
+        Log.i("Distance", String.valueOf(results[0]));
+
+        return (int) results[0];
     }
 }
