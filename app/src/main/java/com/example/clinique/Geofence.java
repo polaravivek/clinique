@@ -28,11 +28,18 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 public class Geofence extends FragmentActivity implements OnMapReadyCallback,GoogleMap.OnMapLongClickListener,View.OnClickListener,View.OnKeyListener {
 
@@ -168,6 +175,23 @@ public class Geofence extends FragmentActivity implements OnMapReadyCallback,Goo
                     public void onSuccess(Void aVoid) {
 
                         Log.d(TAG, "onSuccess: GEOFENCE ADDED....");
+
+                        final ParseQuery<ParseObject> obj = new ParseQuery<ParseObject>("Clinics");
+                        obj.whereExists("clinicLoc");
+
+                        obj.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> stores, ParseException e) {
+                                if (e == null){
+
+                                        for(int i = 0; i < stores.size(); i++) {
+                                            LatLng storeLocation = new LatLng(stores.get(i).getParseGeoPoint("clinicLoc").getLatitude(), stores.get(i).getParseGeoPoint("clinicLoc").getLongitude());
+                                            mMap.addMarker(new MarkerOptions().position(storeLocation).title(stores.get(i).getString("clinicName")).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                                    }
+                                }
+                            }
+                        });
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

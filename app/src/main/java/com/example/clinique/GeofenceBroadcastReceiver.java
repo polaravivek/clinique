@@ -57,7 +57,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
                 notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_EXIT","You Exit from Geofence", com.example.clinique.Geofence.class);
                 break;
         }
-
+/*
         if (trasitiontype == Geofence.GEOFENCE_TRANSITION_ENTER){
             ParseObject object = new ParseObject("Notification");
             object.put("Notify",trasitiontype);
@@ -75,5 +75,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
                 }
             });
         }
+
+ */
     }
 }
